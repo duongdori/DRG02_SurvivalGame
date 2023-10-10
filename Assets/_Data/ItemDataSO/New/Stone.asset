@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e948f6190db442b817fb5e31f5c1a9d, type: 3}
+  m_Name: Stone
+  m_EditorClassIdentifier: 
+  itemID: 1
+  itemName: Stone
+  itemIcon: {fileID: 21300000, guid: 55048edc51fade24da10f303ada18406, type: 3}
+  itemPrefab: {fileID: 2368716735644536611, guid: d2b3474e3f033484297547bd6f7fb3de, type: 3}
+  itemVisual: {fileID: 2354311428190401091, guid: d0f8c8f75c0d0b44bb915433f6c157e1, type: 3}
+  maxStackSize: 5
+  itemType: 4
+  handSlot: 0
+  damageAmount: 0
+  toolType: 0
+  toolNeeded: 2
