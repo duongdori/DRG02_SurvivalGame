@@ -70,12 +70,13 @@ namespace InventorySystem
             // If player is holding shift key? Split the stack.
             if (isShiftPressed && clickedUISlot.AssignedInventorySlot.SplitStack(out InventorySlot halfStackSlot))
             {
-                MouseItemData.Instance.UpdateMouseSlot(halfStackSlot);
+                MouseItemData.Instance.UpdateMouseSlot(halfStackSlot, clickedUISlot.IsActiveIndicator());
                 clickedUISlot.UpdateUISlot();
+                clickedUISlot.SetIndicator(false);
             }
             else
             {
-                MouseItemData.Instance.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
+                MouseItemData.Instance.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot, clickedUISlot.IsActiveIndicator());
                 clickedUISlot.ClearSlot();
             }
         }
@@ -83,6 +84,7 @@ namespace InventorySystem
         {
             clickedUISlot.AssignedInventorySlot.AssignItem(MouseItemData.Instance.AssignedInventorySlot);
             clickedUISlot.UpdateUISlot();
+            clickedUISlot.SetIndicator(MouseItemData.Instance.GetIsIndicator());
                 
             MouseItemData.Instance.ClearSlot();
         }
@@ -90,13 +92,15 @@ namespace InventorySystem
         {
             InventorySlot clonedSlot = new InventorySlot(MouseItemData.Instance.AssignedInventorySlot.ItemData,
                 MouseItemData.Instance.AssignedInventorySlot.StackSize);
-            
+
+            bool isIndicator = MouseItemData.Instance.GetIsIndicator();
             MouseItemData.Instance.ClearSlot();
-            MouseItemData.Instance.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
+            MouseItemData.Instance.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot, clickedUISlot.IsActiveIndicator());
             
             clickedUISlot.ClearSlot();
             clickedUISlot.AssignedInventorySlot.AssignItem(clonedSlot);
             clickedUISlot.UpdateUISlot();
+            clickedUISlot.SetIndicator(isIndicator);
         }
         private void CombineSlots(InventorySlotUI clickedUISlot, InventoryItemData mouseSlotItemData)
         {
@@ -124,7 +128,7 @@ namespace InventorySystem
 
             InventorySlot newItem = new InventorySlot(mouseSlotItemData, remainingOnMouse);
             MouseItemData.Instance.ClearSlot();
-            MouseItemData.Instance.UpdateMouseSlot(newItem);
+            MouseItemData.Instance.UpdateMouseSlot(newItem, false);
         }
     }
 }

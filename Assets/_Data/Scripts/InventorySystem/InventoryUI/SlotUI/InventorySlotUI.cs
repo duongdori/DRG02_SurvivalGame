@@ -78,6 +78,11 @@ namespace InventorySystem
         {
             indicator.enabled = !indicator.IsActive();
         }
+        
+        public void SetIndicator(bool isIndicator)
+        {
+            indicator.enabled = isIndicator;
+        }
 
         public bool IsActiveIndicator()
         {

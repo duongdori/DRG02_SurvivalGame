@@ -21,6 +21,7 @@ namespace InventorySystem
         [SerializeField] private GameObject itemPrefab;
         [SerializeField] private float dropOffset = 3f;
         private Transform _playerTransform;
+        private bool isIndicator = false;
         private void Awake()
         {
             if (Instance == null)
@@ -65,6 +66,7 @@ namespace InventorySystem
             itemCount.text = "";
             itemSprite.color = Color.clear;
             itemSprite.sprite = null;
+            isIndicator = false;
         }
 
         private static bool IsPointerOverUIObject()
@@ -75,12 +77,18 @@ namespace InventorySystem
             EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
             return results.Count > 0;
         }
-        public void UpdateMouseSlot(InventorySlot invSlot)
+        public void UpdateMouseSlot(InventorySlot invSlot, bool indicator)
         {
             assignedInventorySlot.AssignItem(invSlot);
             itemSprite.sprite = invSlot.ItemData.itemIcon;
             itemSprite.color = Color.white;
             itemCount.text = invSlot.StackSize.ToString();
+            isIndicator = indicator;
+        }
+
+        public bool GetIsIndicator()
+        {
+            return isIndicator;
         }
     }
 }

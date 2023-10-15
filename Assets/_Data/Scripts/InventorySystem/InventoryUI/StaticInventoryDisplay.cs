@@ -51,6 +51,8 @@ namespace InventorySystem
 
         private void UpdateSlotIndicator(InventorySlotUI slotUI)
         {
+            if(slotUI.AssignedInventorySlot.IsEmptySlot()) return;
+            if(!MouseItemData.Instance.AssignedInventorySlot.IsEmptySlot()) return;
             foreach (var slot in slots)
             {
                 if (slot != slotUI)
